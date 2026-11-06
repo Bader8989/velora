@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velora | دفع تثبيت الحجز</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<!-- نموذج الدفع الرسمي من Moyasar: بيانات البطاقة بتروح مباشرة لخوادم البوابة -->
+<link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.15.0/moyasar.css">
+<script src="https://cdn.moyasar.com/mpf/1.15.0/moyasar.js"></script>
+<style>
+  :root{
+    --ink:#2b2420; --muted:#7a6d64; --sand:#f6efe7; --cream:#fbf8f4;
+    --rose:#b9776a; --rose-d:#9c5f53; --line:#e8ddd1; --ok:#3f7d5c; --err:#b3412f;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.8;font-size:16px;min-height:100vh}
+  a{color:inherit}
+  h1,h2,h3{font-family:"Amiri",serif;font-weight:700;line-height:1.35;margin:0}
+  .eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--rose-d);font-weight:600}
+
+  header{background:rgba(251,248,244,.92);border-bottom:1px solid var(--line)}
+  .nav{max-width:1120px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo svg{width:30px;height:30px}
+  .logo .wm{font-family:"Cormorant Garamond",serif;font-weight:600;letter-spacing:.22em;font-size:1.5rem;direction:ltr}
+  .logo .sub{font-size:.72rem;font-weight:500;color:var(--muted);border-right:1px solid var(--line);padding-right:10px}
+  .secure{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--ok);font-weight:600}
+
+  main{max-width:980px;margin:0 auto;padding:48px 22px 80px}
+  .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:start}
+  .intro h1{font-size:clamp(1.8rem,3.6vw,2.5rem);margin:8px 0 12px}
+  .intro p{color:var(--muted);margin:0 0 24px}
+
+  .summary{background:var(--ink);color:#f4ece4;border-radius:var(--radius);padding:24px}
+  .summary .r{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.93rem}
+  .summary .r span:first-child{color:#c9bcb1}
+  .summary .r.total{border:0;padding-top:16px;font-size:1.05rem}
+  .summary .r.total b{font-family:"Amiri",serif;font-size:1.7rem;color:#fff}
+  .notes{list-style:none;padding:0;margin:20px 0 0;font-size:.86rem;color:var(--muted)}
+  .notes li{display:flex;gap:10px;padding:6px 0}
+  .notes svg{flex:none;margin-top:6px;color:var(--rose)}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 14px 40px rgba(80,50,40,.06)}
+  .card h2{font-size:1.4rem;margin-bottom:4px}
+  .card .sub{color:var(--muted);font-size:.88rem;margin:0 0 20px}
+  .brands{display:flex;gap:8px;margin-bottom:18px;direction:ltr;justify-content:flex-end}
+  .brands span{border:1px solid var(--line);border-radius:6px;padding:2px 10px;font-size:.75rem;font-weight:600;color:var(--muted);font-family:system-ui,sans-serif}
+
+  /* تنسيق نموذج Moyasar ليتماشى مع الهوية */
+  .mysr-form{direction:ltr}
+  .mysr-form button,.mysr-form .mysr-btn{border-radius:999px !important}
+
+  /* نموذج المعاينة (الوضع التجريبي فقط) */
+  .demo-warn{background:#fff4e5;border:1px solid #f0d2a8;color:#8a5a1c;border-radius:12px;padding:10px 14px;font-size:.84rem;margin-bottom:18px}
+  .field{margin-bottom:14px}
+  label{display:block;font-size:.86rem;font-weight:600;margin-bottom:6px}
+  input{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .2s;direction:ltr;text-align:left}
+  input:focus{border-color:var(--rose)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .err{color:var(--err);font-size:.8rem;margin-top:4px;display:none}
+  .field.bad .err{display:block}
+  .field.bad input{border-color:var(--err)}
+  .cc-wrap{position:relative}
+  .cc-wrap .brand{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.72rem;font-weight:700;color:var(--muted);font-family:system-ui,sans-serif}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--rose);color:#fff;font:inherit;font-weight:600;padding:14px 28px;cursor:pointer;text-decoration:none;transition:background .2s;width:100%}
+  .btn:hover{background:var(--rose-d)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn[disabled]{opacity:.55;cursor:not-allowed}
+  .fine{font-size:.78rem;color:var(--muted);text-align:center;margin:14px 0 0}
+
+  .state{display:none;text-align:center;padding:12px 0}
+  .state .ic{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px}
+  .state.ok .ic{background:#e3efe7;color:var(--ok)}
+  .state.fail .ic{background:#f7e3df;color:var(--err)}
+  .state h2{margin-bottom:6px}
+  .state p{color:var(--muted);margin:0 0 18px}
+  .spinner{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--rose);border-radius:50%;animation:spin 1s linear infinite;margin:20px auto}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .demo-badge{position:fixed;bottom:18px;right:18px;background:var(--ink);color:#fff;font-size:.75rem;padding:6px 12px;border-radius:999px;opacity:.85}
+
+  @media (max-width:820px){.grid{grid-template-columns:1fr}.intro p{margin-bottom:16px}.notes{display:none}}
+  @media (max-width:480px){.card{padding:20px}.nav .secure span{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="./" class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#b9776a" stroke-width="1.3"/><path d="M10 10l6 13 6-13" stroke="#2b2420" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="wm">VELORA</span><span class="sub">عيادات التجميل</span>
+    </a>
+    <div class="secure">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span>دفع آمن ومشفّر</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <div class="intro">
+      <span class="eyebrow">تثبيت الحجز</span>
+      <h1>ادفع لتثبيت<br>حجزك</h1>
+      <p>هذا المبلغ بيثبّت حجزك بعد الاستشارة، وبيُخصم بالكامل من قيمة الإجراء لاحقاً.</p>
+
+      <div class="summary">
+        <div class="r"><span>رقم الطلب</span><b id="sRef" dir="ltr">—</b></div>
+        <div class="r" id="sNameRow"><span>الاسم</span><b id="sName">—</b></div>
+        <div class="r" id="sSvcRow"><span>الخدمة</span><b id="sSvc">—</b></div>
+        <div class="r total"><span>مبلغ التثبيت</span><b><span id="sAmt">—</span> <small style="font-size:.9rem">ريال</small></b></div>
+      </div>
+
+      <ul class="notes">
+        <li><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>يُخصم من قيمة الإجراء عند حضورك.</li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg><span id="refundNote">قابل للاسترجاع إذا ألغيت قبل الموعد بـ 24 ساعة.</span></li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>بيانات بطاقتك بتروح مباشرة لبوابة الدفع المرخّصة، وإحنا ما بنشوفها ولا بنخزّنها.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <!-- 1) نموذج الدفع -->
+      <div id="payView">
+        <h2>بيانات البطاقة</h2>
+        <p class="sub">مدى · فيزا · ماستركارد · Apple Pay</p>
+
+        <!-- الوضع الحقيقي: Moyasar بيركّب النموذج هون -->
+        <div class="mysr-form" id="mysrForm"></div>
+
+        <!-- الوضع التجريبي: معاينة شكلية فقط، ما بترسل أي شي لأي مكان -->
+        <form id="demoForm" novalidate style="display:none" autocomplete="off">
+          <div class="demo-warn">⚠️ هاي معاينة تجريبية. لا تدخل بطاقة حقيقية، والبيانات ما بتنبعت لأي مكان. جرّب الرقم <bdi dir="ltr"><b>4111 1111 1111 1111</b></bdi>.</div>
+          <div class="field" id="d-name">
+            <label for="ccName">الاسم على البطاقة</label>
+            <input id="ccName" placeholder="SARA MOHAMMED" autocomplete="off">
+            <div class="err">اكتب الاسم كما هو على البطاقة</div>
+          </div>
+          <div class="field" id="d-num">
+            <label for="ccNum">رقم البطاقة</label>
+            <div class="cc-wrap"><input id="ccNum" inputmode="numeric" placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="off"><span class="brand" id="ccBrand"></span></div>
+            <div class="err">رقم البطاقة غير صحيح</div>
+          </div>
+          <div class="row">
+            <div class="field" id="d-exp">
+              <label for="ccExp">تاريخ الانتهاء</label>
+              <input id="ccExp" inputmode="numeric" placeholder="MM / YY" maxlength="7" autocomplete="off">
+              <div class="err">تاريخ غير صحيح</div>
+            </div>
+            <div class="field" id="d-cvc">
+              <label for="ccCvc">رمز الأمان CVC</label>
+              <input id="ccCvc" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="off">
+              <div class="err">3 أو 4 أرقام</div>
+            </div>
+          </div>
+          <button class="btn" type="submit" id="demoPay">ادفع <span class="amtTxt"></span> ريال</button>
+        </form>
+
+        <p class="fine">🔒 الدفع معالج عبر Moyasar، بوابة دفع مرخّصة من البنك المركزي السعودي.</p>
+      </div>
+
+      <!-- 2) جاري التحقق -->
+      <div class="state" id="checking" style="display:none">
+        <div class="spinner"></div>
+        <p>جاري التحقق من الدفع…</p>
+      </div>
+
+      <!-- 3) نجاح الدفع -->
+      <div class="state ok" id="okView">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h2>تم الدفع ✓</h2>
+        <p>رقم العملية <b id="okId" dir="ltr"></b>.</p>
+        <p id="okMsg" style="color:var(--muted)">ضلّ خطوة أخيرة لتثبيت موعدك.</p>
+        <a class="btn" id="toVerify" href="./">متابعة</a>
+      </div>
+
+      <!-- 4) فشل -->
+      <div class="state fail" id="failView">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h2>ما تمّت عملية الدفع</h2>
+        <p id="failMsg">ما انخصم منك أي مبلغ. جرّب مرة ثانية أو استخدم بطاقة أخرى.</p>
+        <button class="btn" type="button" id="retry">حاول مرة ثانية</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="demo-badge" id="demoBadge">نسخة تجريبية</div>
+
+<script>
+/* ================= الإعدادات — عدّلها قبل النشر ================= */
+const PAY = {
+  mode: "demo",                    // "demo" للمعاينة · "live" بعد ما يجهز حساب Moyasar
+  amount: 200,                     // قيمة العربون بالريال (لازم تطابق DEPOSIT_SAR على السيرفر)
+  publishableKey: "pk_test_XXXXXXXXXXXXXXXXXXXX", // المفتاح العام من لوحة Moyasar (pk_live_ بالتشغيل الحقيقي)
+  verifyEndpoint: "/api/verify-payment",
+  refundNote: "قابل للاسترجاع إذا ألغيت قبل الموعد بـ 24 ساعة."
+};
+/* ================================================================= */
+
+const $ = s => document.querySelector(s);
+const q = new URLSearchParams(location.search);
+const clean = (v, n) => String(v || "").replace(/[<>]/g, "").trim().slice(0, n);
+
+// بيانات الطلب جاية من صفحة الحجز
+const order = {
+  ref: clean(q.get("ref"), 20) || ("VL-" + Date.now().toString(36).toUpperCase().slice(-6)),
+  name: clean(q.get("n"), 40),
+  service: clean(q.get("s"), 60),
+  phone: clean(q.get("p"), 15).replace(/\D/g, "")   // 5XXXXXXXX — للتحويل لصفحة التحقق بعد الدفع
+};
+
+// بعد نجاح الدفع: نحوّل لصفحة إدخال الرمز للتأكد إنه نفس الزبون
+function verifyURL(){
+  return "verify.html?" + new URLSearchParams({ref: order.ref, n: order.name, s: order.service, p: order.phone});
+}
+function paidDone(){
+  show("#okView");
+  if (order.phone && /^5\d{8}$/.test(order.phone)) {
+    const u = verifyURL();
+    $("#toVerify").textContent = "تأكيد رقم الجوال وتثبيت الموعد";
+    $("#toVerify").href = u;
+    $("#okMsg").textContent = "ضلّ خطوة أخيرة: أكّد رقم جوالك عشان نثبّت موعدك.";
+    setTimeout(() => { location.href = u; }, 2200);   // تحويل تلقائي
+  } else {
+    $("#toVerify").textContent = "الرجوع للموقع";
+    $("#toVerify").href = "./";
+    $("#okMsg").textContent = "رح يتواصل معك فريق التنسيق لتأكيد الوقت.";
+  }
+}
+$("#sRef").textContent = order.ref;
+order.name ? ($("#sName").textContent = order.name) : $("#sNameRow").remove();
+order.service ? ($("#sSvc").textContent = order.service) : $("#sSvcRow").remove();
+$("#sAmt").textContent = PAY.amount;
+$("#refundNote").textContent = PAY.refundNote;
+document.querySelectorAll(".amtTxt").forEach(e => e.textContent = PAY.amount);
+if (PAY.mode !== "demo") $("#demoBadge").remove();
+
+function show(view){
+  ["#payView","#checking","#okView","#failView"].forEach(v => $(v).style.display = "none");
+  $(view).style.display = "block";
+}
+
+/* ---------- الرجوع من البوابة: Moyasar بيرجّع ?id=...&status=...&message=... ---------- */
+const backId = q.get("id");
+if (PAY.mode === "live" && backId) {
+  verify(backId);
+} else if (PAY.mode === "live") {
+  startMoyasar();
+} else {
+  startDemo();
+}
+
+function startMoyasar(){
+  const back = new URL(location.href);
+  back.search = new URLSearchParams({ref: order.ref, n: order.name, s: order.service}).toString();
+  Moyasar.init({
+    element: "#mysrForm",
+    amount: Math.round(PAY.amount * 100),       // بالهللة
+    currency: "SAR",
+    country: "SA",
+    language: "ar",
+    description: `تثبيت حجز #${order.ref}`,
+    publishable_api_key: PAY.publishableKey,
+    callback_url: back.toString(),
+    methods: ["creditcard", "applepay"],
+    supported_networks: ["mada", "visa", "mastercard"],
+    apple_pay: { country: "SA", label: "Velora", validate_merchant_url: "https://api.moyasar.com/v1/applepay/initiate" },
+    metadata: { ref: order.ref, name: order.name, service: order.service }
+  });
+}
+
+async function verify(id){
+  show("#checking");
+  try {
+    const r = await fetch(`${PAY.verifyEndpoint}?id=${encodeURIComponent(id)}`);
+    const j = await r.json();
+    // نشيل المعرّف من الرابط عشان التحديث ما يعيد الإشعار
+    history.replaceState(null, "", location.pathname + "?" + new URLSearchParams({ref: order.ref, n: order.name, s: order.service}));
+    if (j.ok && j.status === "paid") { $("#okId").textContent = j.ref || order.ref; paidDone(); }
+    else { if (j.message) $("#failMsg").textContent = j.message; show("#failView"); }
+  } catch {
+    $("#failMsg").textContent = "ما قدرنا نتأكد من حالة الدفع. لا تعيد الدفع قبل ما تتواصل معنا.";
+    show("#failView");
+  }
+}
+
+$("#retry").onclick = () => {
+  if (PAY.mode === "live") { location.href = location.pathname + "?" + new URLSearchParams({ref: order.ref, n: order.name, s: order.service}); }
+  else { $("#demoForm").reset(); $("#ccBrand").textContent = ""; show("#payView"); }
+};
+
+/* ---------- الوضع التجريبي: تحقق شكلي محلي فقط ---------- */
+function startDemo(){
+  $("#mysrForm").style.display = "none";
+  $("#demoForm").style.display = "block";
+  const num = $("#ccNum"), exp = $("#ccExp"), cvc = $("#ccCvc");
+  num.addEventListener("input", () => {
+    const d = num.value.replace(/\D/g, "").slice(0, 16);
+    num.value = d.replace(/(.{4})/g, "$1 ").trim();
+    $("#ccBrand").textContent = /^4/.test(d) ? "VISA" : /^(5[1-5]|2[2-7])/.test(d) ? "MASTERCARD" : d ? "MADA" : "";
+  });
+  exp.addEventListener("input", () => {
+    const d = exp.value.replace(/\D/g, "").slice(0, 4);
+    exp.value = d.length > 2 ? d.slice(0,2) + " / " + d.slice(2) : d;
+  });
+  cvc.addEventListener("input", () => cvc.value = cvc.value.replace(/\D/g, "").slice(0, 4));
+
+  $("#demoForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const d = num.value.replace(/\D/g, "");
+    const [mm, yy] = exp.value.split("/").map(x => parseInt(x, 10));
+    const now = new Date(), y = now.getFullYear() % 100, m = now.getMonth() + 1;
+    const expOk = mm >= 1 && mm <= 12 && (yy > y || (yy === y && mm >= m));
+    let ok = true;
+    const bad = (id, b) => { $(id).classList.toggle("bad", b); if (b) ok = false; };
+    bad("#d-name", $("#ccName").value.trim().length < 3);
+    bad("#d-num", !(d.length >= 15 && luhn(d)));
+    bad("#d-exp", !expOk);
+    bad("#d-cvc", !/^\d{3,4}$/.test(cvc.value));
+    if (!ok) return;
+    // ما في أي إرسال: نمسح الحقول ونعرض النتيجة
+    const btn = $("#demoPay"); btn.disabled = true;
+    show("#checking");
+    setTimeout(() => {
+      $("#demoForm").reset(); $("#ccBrand").textContent = ""; btn.disabled = false;
+      $("#okId").textContent = order.ref; paidDone();
+    }, 1200);
+  });
+}
+function luhn(n){ let s = 0, alt = false; for (let i = n.length - 1; i >= 0; i--) { let x = +n[i]; if (alt) { x *= 2; if (x > 9) x -= 9; } s += x; alt = !alt; } return s % 10 === 0; }
+</script>
+</body>
+</html>

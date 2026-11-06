@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velora | فيلورا · استشارة تجميل مجانية</title>
+<meta name="description" content="احجز استشارة تجميل مجانية مع أطباء مرخّصين في الرياض وجدة والدمام. فيلر، بوتوكس، ليزر، نضارة البشرة، زراعة الشعر.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2420; --muted:#7a6d64; --sand:#f6efe7; --cream:#fbf8f4;
+    --rose:#b9776a; --rose-d:#9c5f53; --line:#e8ddd1; --ok:#3f7d5c; --err:#b3412f;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.8;font-size:16px}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:"Amiri",serif;font-weight:700;line-height:1.35;margin:0}
+  .eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--rose-d);font-weight:600}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:rgba(251,248,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Amiri",serif;font-size:1.45rem;font-weight:700;text-decoration:none}
+  .logo svg{width:30px;height:30px}
+  .logo .wm{font-family:"Cormorant Garamond",serif;font-weight:600;letter-spacing:.22em;font-size:1.5rem;direction:ltr}
+  .logo .sub{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:0;border-right:1px solid var(--line);padding-right:10px}
+  .nav a.btn{padding:9px 18px;font-size:.92rem}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--rose);color:#fff;font:inherit;font-weight:600;padding:14px 28px;cursor:pointer;text-decoration:none;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--rose-d)}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:#fff}
+  .btn[disabled]{opacity:.55;cursor:not-allowed}
+
+  /* hero */
+  .hero{padding:72px 0 56px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);margin:14px 0 18px}
+  .hero h1 em{font-style:normal;color:var(--rose-d)}
+  .hero p.lead{color:var(--muted);font-size:1.08rem;max-width:520px;margin:0 0 30px}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+  .trust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+  .trust b{display:block;color:var(--ink);font-size:1.05rem}
+  .hero-art{aspect-ratio:4/5;border-radius:220px 220px var(--radius) var(--radius);background:
+      radial-gradient(circle at 30% 25%,#f3d9cf 0,transparent 55%),
+      radial-gradient(circle at 75% 70%,#e9cdbf 0,transparent 50%),
+      linear-gradient(160deg,#efe1d4,#dcbfae);position:relative;display:flex;align-items:flex-end;justify-content:center;padding:28px}
+  .hero-art{overflow:hidden}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+  .hero-art svg{display:none}
+  .hero-card{position:relative;background:#fff;border-radius:14px;padding:16px 20px;box-shadow:0 12px 30px rgba(80,50,40,.12);font-size:.9rem;width:100%}
+  .hero-card .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-left:6px}
+
+  section{padding:76px 0;scroll-margin-top:68px}
+  .sec-head{max-width:620px;margin-bottom:40px}
+  .sec-head h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-top:8px}
+  .sec-head p{color:var(--muted);margin:10px 0 0}
+
+  /* services */
+  .services{background:var(--sand)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .svc{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:0 0 22px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
+  .svc:hover{border-color:var(--rose);transform:translateY(-3px)}
+  .svc .th{aspect-ratio:4/3;background:#efe3d9 center/cover no-repeat;display:grid;place-items:center;color:var(--rose-d);margin-bottom:16px;transition:transform .5s}
+  .svc:hover .th{transform:scale(1.04)}
+  .svc .th.empty{background:radial-gradient(circle at 30% 30%,#f6e4da,transparent 60%),linear-gradient(150deg,#efe1d6,#e2c9ba)}
+  .svc .th.empty span{font-family:"Cormorant Garamond",serif;letter-spacing:.2em;font-size:1.1rem;color:#9c7a6c;direction:ltr}
+  .svc h3,.svc p{padding:0 22px}
+  .svc h3{font-size:1.3rem;margin-bottom:6px}
+  .svc p{color:var(--muted);margin:0;font-size:.95rem}
+
+  /* before / after */
+  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ba-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .ba{position:relative;aspect-ratio:4/5;overflow:hidden;user-select:none;direction:ltr;touch-action:pan-y}
+  .ba .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+  .ba .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#9a8b80;font-size:.8rem;text-align:center;padding:20px}
+  .ba .ph.b{padding-right:50%;background:repeating-linear-gradient(135deg,#efe6dd 0 12px,#ebe0d5 12px 24px)}
+  .ba .ph.a{padding-left:50%;background:linear-gradient(160deg,#f7ece4,#ecd6c9);color:#8b6f63}
+  .ba .ph svg{width:34px;height:34px;opacity:.6}
+  .ba .ph span{direction:rtl}
+  .ba .tag{position:absolute;top:12px;font-size:.72rem;font-weight:600;background:rgba(43,36,32,.75);color:#fff;padding:3px 10px;border-radius:999px;z-index:3}
+  .ba .tag.l{left:12px}.ba .tag.r{right:12px}
+  .ba .bar{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;transform:translateX(-1px);z-index:2;pointer-events:none}
+  .ba .knob{position:absolute;top:50%;left:var(--pos,50%);width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);display:grid;place-items:center;z-index:2;pointer-events:none;color:var(--ink)}
+  .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4;margin:0}
+  .ba-cap{padding:14px 18px}
+  .ba-cap b{display:block;font-size:1rem}
+  .ba-cap span{color:var(--muted);font-size:.85rem}
+  .ba-note{color:var(--muted);font-size:.8rem;margin-top:16px}
+  @media (max-width:860px){.ba-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.ba-grid{grid-template-columns:1fr}}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+  .step{border-top:1.5px solid var(--ink);padding-top:18px}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:"Amiri",serif;font-size:2rem;color:var(--rose)}
+  .step h3{font-size:1.25rem;margin:4px 0 6px}
+  .step p{margin:0;color:var(--muted);font-size:.95rem}
+
+  /* space */
+  .space{background:var(--sand)}
+  .space-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .space-imgs{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;align-items:end}
+  .space-imgs img{width:100%;border-radius:var(--radius);object-fit:cover;display:block}
+  .space-imgs img:first-child{aspect-ratio:4/5}
+  .space-imgs img:last-child{aspect-ratio:3/4;margin-bottom:-28px}
+  @media (max-width:860px){.space-grid{grid-template-columns:1fr}.space-imgs img:last-child{margin-bottom:0}}
+
+  /* form */
+  .book{background:var(--ink);color:#f4ece4}
+  .book .sec-head p{color:#c9bcb1}
+  .book .eyebrow{color:#e0a597}
+  .book-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+  .perks{list-style:none;padding:0;margin:0}
+  .perks li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#ddd2c7}
+  .perks li svg{flex:none;margin-top:6px;color:#e0a597}
+  form, .result{background:var(--cream);color:var(--ink);border-radius:var(--radius);padding:30px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+  input,select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .2s}
+  input:focus,select:focus,textarea:focus{border-color:var(--rose)}
+  textarea{min-height:92px;resize:vertical}
+  .phone{display:flex;direction:ltr}
+  .phone span{display:grid;place-items:center;padding:0 12px;border:1.5px solid var(--line);border-left:0;border-radius:0 12px 12px 0;background:var(--sand);font-size:.95rem}
+  .phone span{order:2;border-left:1.5px solid var(--line);border-right:0;border-radius:12px 0 0 12px;order:0}
+  .phone input{border-radius:0 12px 12px 0;border-left:0;text-align:left}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips input{display:none}
+  .chips label{margin:0;font-weight:500;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;background:#fff;font-size:.88rem}
+  .chips input:checked+label{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--muted);margin:6px 0 20px}
+  .consent input{width:18px;height:18px;margin-top:5px;accent-color:var(--rose)}
+  .err{color:var(--err);font-size:.82rem;margin-top:4px;display:none}
+  .field.bad .err{display:block}
+  .field.bad input,.field.bad select{border-color:var(--err)}
+  .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
+  html,body{overflow-x:clip}
+  form .btn{width:100%}
+  .form-note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:12px}
+
+  .result{display:none}
+  .result h3{font-size:1.6rem;margin-bottom:6px}
+  .result .ok-ic{width:54px;height:54px;border-radius:50%;background:#e3efe7;color:var(--ok);display:grid;place-items:center;margin-bottom:14px}
+  .tg{margin-top:22px;border:1px dashed var(--line);border-radius:14px;padding:16px;background:#fff}
+  .tg-h{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);margin-bottom:10px}
+  .tg-msg{background:#eef6fc;border-radius:12px 12px 12px 4px;padding:12px 14px;font-size:.88rem;white-space:pre-wrap;line-height:1.75}
+  .tg-btns{display:flex;gap:6px;margin-top:6px}
+  .tg-btns span{flex:1;text-align:center;background:#dbeaf6;border-radius:8px;padding:6px;font-size:.8rem;color:#2a6496}
+  .pay{margin-top:18px;padding:16px;border-radius:14px;background:var(--sand);font-size:.9rem}
+  .pay .btn{margin-top:10px;width:100%}
+
+  /* faq */
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--rose)}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);margin:10px 0 0}
+  .faq-wrap{max-width:780px}
+
+  footer{border-top:1px solid var(--line);padding:36px 0 90px;font-size:.85rem;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .disclaimer{margin-top:16px;font-size:.78rem;max-width:760px}
+
+  .wa{position:fixed;bottom:18px;left:18px;z-index:30;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.18)}
+  .demo-badge{position:fixed;bottom:18px;right:18px;z-index:30;background:var(--ink);color:#fff;font-size:.75rem;padding:6px 12px;border-radius:999px;opacity:.85}
+
+  @media (max-width:860px){
+    .hero-grid,.book-grid{grid-template-columns:1fr}
+    .hero-art{max-width:340px;margin:0 auto;width:100%}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr}
+    section{padding:56px 0}
+  }
+  @media (max-width:560px){
+    .svc-grid,.row{grid-template-columns:1fr}
+    form,.result{padding:22px}
+    .nav a.btn{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#b9776a" stroke-width="1.3"/><path d="M10 10l6 13 6-13" stroke="#2b2420" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="wm">VELORA</span><span class="sub">عيادات التجميل</span>
+    </a>
+    <a href="#book" class="btn">احجز استشارتك المجانية</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-top:64px">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">استشارة مجانية · بدون أي التزام</span>
+        <h1>جمالك الطبيعي،<br><em>بقرار مدروس</em></h1>
+        <p class="lead">قبل أي إجراء تجميلي، احكِ مع مختص. عبّي الطلب بدقيقة، وفريقنا يتواصل معك لتحديد موعد استشارة مجانية تناسب وقتك.</p>
+        <div class="hero-ctas">
+          <a href="#book" class="btn">ابدأ الطلب الآن</a>
+          <a href="#services" class="btn ghost">تعرّف على الخدمات</a>
+        </div>
+        <div class="trust">
+          <div><b>مجانية</b>الاستشارة الأولى</div>
+          <div><b>خلال 24 ساعة</b>نتواصل معك</div>
+          <div><b>سرّية تامة</b>لبياناتك</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img class="hero-img" src="img/hero.jpg" alt="">
+        <svg viewBox="0 0 400 500" preserveAspectRatio="none"><path d="M60 420 C 120 260, 280 260, 340 420" stroke="#fff" stroke-width="1.2" fill="none"/><path d="M90 440 C 150 300, 250 300, 310 440" stroke="#fff" stroke-width="1" fill="none"/><circle cx="200" cy="170" r="70" stroke="#fff" stroke-width="1.2" fill="none"/></svg>
+        <div class="hero-card"><span class="dot"></span>فريق التنسيق متاح الآن لاستقبال طلبك</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">الخدمات</span>
+        <h2>بشو بتحب نستشيرك؟</h2>
+        <p>اختر الخدمة اللي بتهمك، ورح تنضاف تلقائياً على طلبك.</p>
+      </div>
+      <div class="svc-grid" id="svcGrid"></div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">النتائج</span>
+        <h2>قبل وبعد</h2>
+        <p>اسحب الخط لتقارن. كل الصور لحالات حقيقية من مراكزنا، ومنشورة بموافقة أصحابها.</p>
+      </div>
+      <div class="ba-grid" id="baGrid"></div>
+      <p class="ba-note">النتائج تختلف من شخص لآخر حسب طبيعة البشرة والحالة وتقييم الطبيب.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">كيف بتمشي الأمور</span>
+        <h2>ثلاث خطوات بسيطة</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>عبّي الطلب</h3><p>اسمك ورقم جوالك والخدمة اللي بتهمك. ما بنطلب أي بيانات دفع.</p></div>
+        <div class="step"><h3>نتواصل معك</h3><p>منسّق من الفريق يتصل أو يراسلك واتساب خلال 24 ساعة لتحديد الموعد.</p></div>
+        <div class="step"><h3>استشارتك المجانية</h3><p>تقييم مع مختص، وخطة واضحة بالخيارات والتكلفة. القرار بعدها إلك.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="space">
+    <div class="wrap space-grid">
+      <div class="space-imgs">
+        <img src="img/room.jpg" alt="غرفة علاج هادئة بإضاءة دافئة" loading="lazy">
+        <img src="img/care.jpg" alt="جلسة ليزر بأجهزة حديثة" loading="lazy">
+      </div>
+      <div>
+        <span class="eyebrow">تجربتك معنا</span>
+        <h2 style="font-size:clamp(1.7rem,3.2vw,2.4rem);margin:8px 0 14px">مساحة هادئة، وأجهزة حديثة</h2>
+        <p style="color:var(--muted);margin:0 0 22px">غرف خاصة ومريحة، ومعايير تعقيم صارمة، وأجهزة معتمدة. خصوصيتك وراحتك أولويتنا من أول زيارة.</p>
+        <a href="#book" class="btn">احجز استشارتك المجانية</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="wrap book-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:24px">
+          <span class="eyebrow">طلب استشارة</span>
+          <h2 style="color:#fff">احجز استشارتك المجانية</h2>
+          <p>بياناتك بتوصل مباشرة لفريق التنسيق فقط.</p>
+        </div>
+        <ul class="perks">
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>بدون أي رسوم على الاستشارة الأولى</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>أطباء ومراكز مرخّصة</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>بتختار الوقت ووسيلة التواصل المناسبة</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>تأكيد الموعد بعربون اختياري عبر بوابة دفع آمنة</li>
+        </ul>
+      </div>
+
+      <div>
+        <form id="leadForm" novalidate>
+          <div class="row">
+            <div class="field" id="f-name">
+              <label for="name">الاسم</label>
+              <input id="name" name="name" autocomplete="name" placeholder="مثال: سارة محمد">
+              <div class="err">اكتب اسمك لو سمحت</div>
+            </div>
+            <div class="field" id="f-phone">
+              <label for="phone">رقم الجوال</label>
+              <div class="phone"><span>+966</span><input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="5X XXX XXXX"></div>
+              <div class="err">رقم سعودي يبدأ بـ 5 (9 أرقام)</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" id="f-city">
+              <label for="city">المدينة</label>
+              <select id="city" name="city">
+                <option value="">اختر المدينة</option>
+                <option>الرياض</option><option>جدة</option><option>الدمام</option><option>الخبر</option>
+                <option>مكة المكرمة</option><option>المدينة المنورة</option><option>أخرى</option>
+              </select>
+              <div class="err">اختر مدينتك</div>
+            </div>
+            <div class="field" id="f-service">
+              <label for="service">الخدمة</label>
+              <select id="service" name="service"><option value="">اختر الخدمة</option></select>
+              <div class="err">اختر الخدمة</div>
+            </div>
+          </div>
+          <input type="hidden" name="contact" value="واتساب">
+          <div class="field">
+            <label>الوقت المناسب</label>
+            <div class="chips">
+              <input type="radio" name="time" id="t1" value="الصباح" checked><label for="t1">الصباح</label>
+              <input type="radio" name="time" id="t2" value="بعد الظهر"><label for="t2">بعد الظهر</label>
+              <input type="radio" name="time" id="t3" value="المساء"><label for="t3">المساء</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="notes">ملاحظات <span style="font-weight:400;color:var(--muted)">(اختياري)</span></label>
+            <textarea id="notes" name="notes" maxlength="500" placeholder="احكِ لنا باختصار شو اللي بتفكر فيه"></textarea>
+          </div>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field" id="f-consent" style="margin:0">
+            <div class="consent"><input type="checkbox" id="consent"><label for="consent" style="font-weight:400;margin:0">أوافق على التواصل معي بخصوص طلبي، وعلى <a href="#privacy">سياسة الخصوصية</a>.</label></div>
+            <div class="err" style="margin:-14px 0 14px">لازم توافق عشان نقدر نتواصل معك</div>
+          </div>
+          <button class="btn" type="submit" id="submitBtn">أرسل طلب الاستشارة</button>
+          <p class="form-note">🔒 ما بنطلب أي معلومات بطاقة. الدفع (إن وجد) بيكون فقط عبر بوابة دفع مرخّصة.</p>
+        </form>
+
+        <div class="result" id="result" role="status" aria-live="polite">
+          <div class="ok-ic"><svg width="26" height="26" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <h3>وصلنا طلبك، شكراً <span id="rName"></span></h3>
+          <p style="color:var(--muted);margin:0">رقم الطلب <b id="rId"></b>. رح نتواصل معك عبر <span id="rContact"></span> خلال 24 ساعة.</p>
+
+          <div class="pay" id="payBox">
+            <b>ثبّت حجزك بعد الاستشارة</b><br>
+            <span style="color:var(--muted)">تقدر تدفع مبلغ تثبيت الحجز عبر صفحة دفع آمنة (مدى، فيزا، Apple Pay)، ويُخصم من قيمة الإجراء لاحقاً.</span>
+            <a class="btn" id="payBtn" href="#" target="_blank" rel="noopener">ادفع لتثبيت الحجز</a>
+          </div>
+
+          <div class="tg" id="tgPreview">
+            <div class="tg-h">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#2aa1da"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg>
+              معاينة: هيك رح توصلك الرسالة على تيليجرام
+            </div>
+            <div class="tg-msg" id="tgMsg"></div>
+            <div class="tg-btns"><span>💬 واتساب العميل</span><span>📞 اتصال</span></div>
+          </div>
+          <button class="btn ghost" style="margin-top:18px;width:100%" id="again" type="button">طلب جديد</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap faq-wrap">
+      <div class="sec-head"><span class="eyebrow">أسئلة شائعة</span><h2>قبل ما تحجز</h2></div>
+      <details><summary>هل الاستشارة مجانية فعلاً؟</summary><p>إيه، الاستشارة الأولى مجانية بالكامل وبدون أي التزام. بتعرف الخيارات والتكلفة، والقرار بعدها إلك.</p></details>
+      <details><summary>ليش ما بتطلبوا بيانات البطاقة بالفورم؟</summary><p>لحمايتك. أي دفع (مثل عربون تثبيت الموعد) بيتم فقط عبر صفحة بوابة الدفع المرخّصة، وإحنا ما بنشوف ولا بنخزّن بيانات بطاقتك.</p></details>
+      <details><summary>مين اللي بيعمل الاستشارة؟</summary><p>أطباء مختصون في مراكز مرخّصة من الجهات الصحية المختصة. بنحدد المختص المناسب حسب الخدمة اللي اخترتها.</p></details>
+      <details><summary>متى رح تتواصلوا معي؟</summary><p>خلال 24 ساعة بالوقت اللي اخترته، عبر واتساب أو اتصال حسب اختيارك.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><b style="color:var(--ink);font-family:'Cormorant Garamond',serif;letter-spacing:.18em">VELORA</b> فيلورا · المملكة العربية السعودية<br>ترخيص رقم: [رقم ترخيص الجهة الصحية]</div>
+      <div id="privacy">سياسة الخصوصية: بياناتك تُستخدم فقط للتواصل بخصوص طلبك ولا تُشارك مع أي طرف ثالث.</div>
+    </div>
+    <p class="disclaimer">المعلومات في هذا الموقع للتعريف فقط ولا تُغني عن الاستشارة الطبية. النتائج تختلف من شخص لآخر، وأي إجراء يتم بعد تقييم الطبيب المختص.</p>
+  </div>
+</footer>
+
+<a class="wa" id="waBtn" href="#" target="_blank" rel="noopener" aria-label="واتساب">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+</a>
+<div class="demo-badge" id="demoBadge">نسخة تجريبية</div>
+
+<script>
+/* ================= الإعدادات — عدّلها قبل النشر ================= */
+const CONFIG = {
+  mode: "live",                 // "demo" للمعاينة · "live" بعد ربط تيليجرام
+  endpoint: "/api/lead",        // دالة الخادم اللي بتبعت لتيليجرام
+  whatsapp: "966557878076",     // رقم واتساب المشروع (بدون + وبدون 00)
+  paymentLink: ""               // اتركه فاضي لاستخدام صفحة العربون pay.html (إعداداتها داخل pay.html)
+};
+const SERVICES = [
+  {img:"img/filler.jpg",k:"فيلر",      d:"تحديد الشفايف والخدود والفك بشكل طبيعي.", i:'<path d="M12 4c-4 4-6 7-6 10a6 6 0 0 0 12 0c0-3-2-6-6-10z"/>'},
+  {k:"بوتوكس",    d:"تخفيف خطوط الجبهة وحول العيون.", i:'<path d="M4 12h16M7 8h10M9 16h6"/>'},
+  {img:"img/laser.jpg",k:"ليزر إزالة الشعر", d:"جلسات ليزر بأجهزة حديثة لكل أنواع البشرة.", i:'<path d="M12 3v6M12 15v6M3 12h6M15 12h6"/>'},
+  {img:"img/glow.jpg",k:"نضارة البشرة", d:"هيدرافيشل، تقشير، ميزوثيرابي وغيرها.", i:'<circle cx="12" cy="12" r="7"/><path d="M9 11h.01M15 11h.01M9 15c2 1.5 4 1.5 6 0"/>'},
+  {k:"زراعة الشعر", d:"تقييم الحالة واختيار التقنية المناسبة.", i:'<path d="M6 20c0-8 3-14 6-16 3 2 6 8 6 16"/>'},
+  {img:"img/body.jpg",k:"تنسيق القوام", d:"خيارات غير جراحية وجراحية بعد تقييم الطبيب.", i:'<path d="M8 3c-2 5 2 7 0 11s2 7 0 7M16 3c2 5-2 7 0 11s-2 7 0 7"/>'}
+];
+/* صور قبل وبعد: حط مسار صورة حقيقية (بموافقة المريض) مكان "" */
+const CASES = [
+  {title:"فيلر الشفايف", note:"جلسة واحدة · 1 مل", before:"", after:""},
+  {title:"نضارة البشرة", note:"4 جلسات هيدرافيشل", before:"", after:""},
+  {title:"زراعة الشعر", note:"بعد 9 أشهر", before:"", after:""}
+];
+/* ================================================================= */
+
+const $ = s => document.querySelector(s);
+const grid = $("#svcGrid"), sel = $("#service");
+SERVICES.forEach(s => {
+  const el = document.createElement("div");
+  el.className = "svc";
+  el.innerHTML = `<div class="th${s.img?"":" empty"}" ${s.img?`style="background-image:url('${s.img}')"`:""}>${s.img?"":`<span>VELORA</span>`}</div><h3>${s.k}</h3><p>${s.d}</p>`;
+  el.onclick = () => { sel.value = s.k; $("#book").scrollIntoView(); };
+  grid.appendChild(el);
+  sel.insertAdjacentHTML("beforeend", `<option>${s.k}</option>`);
+});
+sel.insertAdjacentHTML("beforeend", `<option>غير متأكد/ة — بدي نصيحة</option>`);
+
+const camIc = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>';
+const side = (src, cls, label) => src
+  ? `<img class="pic ${cls==='a'?'after':''}" src="${src}" alt="${label}">`
+  : `<div class="pic ph ${cls} ${cls==='a'?'after':''}">${camIc}<span>صورة ${label}<br>(حالة حقيقية)</span></div>`;
+CASES.forEach(c => {
+  const card = document.createElement("div");
+  card.className = "ba-card";
+  card.innerHTML = `<div class="ba">${side(c.before,'b','قبل')}${side(c.after,'a','بعد')}
+    <span class="tag l">قبل</span><span class="tag r">بعد</span>
+    <div class="bar"></div><div class="knob"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></div>
+    <input type="range" min="0" max="100" value="50" aria-label="مقارنة قبل وبعد: ${c.title}"></div>
+    <div class="ba-cap"><b>${c.title}</b><span>${c.note}</span></div>`;
+  const ba = card.querySelector(".ba");
+  card.querySelector("input").addEventListener("input", e => ba.style.setProperty("--pos", e.target.value + "%"));
+  $("#baGrid").appendChild(card);
+});
+
+$("#waBtn").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("مرحبا، بدي استشارة مجانية");
+if (CONFIG.mode !== "demo") $("#demoBadge").remove();
+
+function normPhone(v){
+  v = v.replace(/[^\d]/g,"").replace(/^00966|^966/,"").replace(/^0/,"");
+  return /^5\d{8}$/.test(v) ? v : null;
+}
+function setBad(id, bad){ $(id).classList.toggle("bad", bad); return !bad; }
+
+$("#leadForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target;
+  const data = {
+    name: f.name.value.trim(),
+    phone: normPhone(f.phone.value),
+    city: f.city.value,
+    service: f.service.value,
+    contact: f.contact.value,
+    time: f.time.value,
+    notes: f.notes.value.trim(),
+    website: f.website.value,           // فخ للسبام
+    page: location.href.split("#")[0]
+  };
+  let ok = true;
+  ok = setBad("#f-name", data.name.length < 2) && ok;
+  ok = setBad("#f-phone", !data.phone) && ok;
+  ok = setBad("#f-city", !data.city) && ok;
+  ok = setBad("#f-service", !data.service) && ok;
+  ok = setBad("#f-consent", !$("#consent").checked) && ok;
+  if (!ok) { f.querySelector(".bad input, .bad select")?.focus(); return; }
+
+  const btn = $("#submitBtn");
+  btn.disabled = true; btn.textContent = "جاري الإرسال…";
+  let id = "VL-" + Date.now().toString(36).toUpperCase().slice(-6);
+
+  if (CONFIG.mode === "live") {
+    try {
+      const r = await fetch(CONFIG.endpoint, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
+      const j = await r.json();
+      if (!r.ok || !j.ok) throw new Error(j.error || "failed");
+      id = j.id || id;
+    } catch (err) {
+      btn.disabled = false; btn.textContent = "أرسل طلب الاستشارة";
+      showInlineError();
+      return;
+    }
+  }
+  showResult(data, id);
+  btn.disabled = false; btn.textContent = "أرسل طلب الاستشارة";
+});
+
+function showInlineError(){
+  let n = $("#sendErr");
+  if (!n) {
+    n = document.createElement("p");
+    n.id = "sendErr"; n.className = "form-note"; n.style.color = "var(--err)";
+    $("#submitBtn").after(n);
+  }
+  n.innerHTML = `صار خلل بالإرسال. جرّب مرة ثانية، أو <a href="https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("مرحبا، واجهتني مشكلة بإرسال الطلب وحابب أتواصل معكم")}" target="_blank" rel="noopener" style="color:var(--rose-d);font-weight:600;text-decoration:underline">تواصل معنا واتساب</a>`;
+}
+
+function showResult(d, id){
+  $("#rName").textContent = d.name.split(" ")[0];
+  $("#rId").textContent = id;
+  $("#rContact").textContent = d.contact === "اتصال" ? "اتصال هاتفي" : "واتساب";
+  const pb = $("#payBtn");
+  // صفحة العربون (pay.html) بتاخد رقم الطلب والاسم والخدمة والجوال،
+  // وبعد الدفع بتحوّل لصفحة تأكيد الرمز (verify.html) للتأكد إنه نفس الزبون
+  const payQ = new URLSearchParams({ref: id, n: d.name.split(" ")[0], s: d.service, p: d.phone});
+  pb.href = (CONFIG.paymentLink || "pay.html") + "?" + payQ;
+  pb.removeAttribute("target");
+  if (CONFIG.mode === "demo") {
+    $("#tgMsg").textContent =
+`🆕 طلب استشارة جديد #${id}
+👤 الاسم: ${d.name}
+📱 الجوال: +966${d.phone}
+📍 المدينة: ${d.city}
+💉 الخدمة: ${d.service}
+💬 التواصل: ${d.contact} · ${d.time}
+📝 ملاحظات: ${d.notes || "—"}
+🕒 ${new Date().toLocaleString("ar-SA",{timeZone:"Asia/Riyadh"})}`;
+  } else $("#tgPreview").remove();
+  $("#leadForm").style.display = "none";
+  $("#result").style.display = "block";
+  $("#result").scrollIntoView({block:"center"});
+}
+$("#again").onclick = () => { $("#leadForm").reset(); $("#result").style.display = "none"; $("#leadForm").style.display = "block"; };
+</script>
+</body>
+</html>
