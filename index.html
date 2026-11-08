@@ -5,137 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Velora | فيلورا · استشارة تجميل مجانية</title>
 <meta name="description" content="احجز استشارة تجميل مجانية مع أطباء مرخّصين في الرياض وجدة والدمام. فيلر، بوتوكس، ليزر، نضارة البشرة، زراعة الشعر.">
+<meta name="theme-color" content="#2d2530">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#2b2420; --muted:#7a6d64; --sand:#f6efe7; --cream:#fbf8f4;
-    --rose:#b9776a; --rose-d:#9c5f53; --line:#e8ddd1; --ok:#3f7d5c; --err:#b3412f;
-    --radius:18px;
+    --ink:#2d2530; --muted:#8b7f86; --cream:#fdf9f6; --sand:#f7ecef;
+    --rose:#c15a72; --rose-d:#a4455c; --gold:#c6a15c; --gold-d:#b08e4a;
+    --line:#efe2e6; --ok:#3f7d5c; --err:#b3412f; --wa:#25d366;
+    --radius:20px; --shadow:0 18px 50px rgba(78,40,55,.10);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.8;font-size:16px}
   a{color:inherit}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   h1,h2,h3{font-family:"Amiri",serif;font-weight:700;line-height:1.35;margin:0}
-  .eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--rose-d);font-weight:600}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.06em;color:var(--gold-d);font-weight:700}
+  .eyebrow::before{content:"";width:22px;height:1.5px;background:linear-gradient(90deg,var(--gold),transparent)}
 
   /* header */
-  header{position:sticky;top:0;z-index:20;background:rgba(251,248,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{display:flex;align-items:center;gap:10px;font-family:"Amiri",serif;font-size:1.45rem;font-weight:700;text-decoration:none}
-  .logo svg{width:30px;height:30px}
-  .logo .wm{font-family:"Cormorant Garamond",serif;font-weight:600;letter-spacing:.22em;font-size:1.5rem;direction:ltr}
-  .logo .sub{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:0;border-right:1px solid var(--line);padding-right:10px}
-  .nav a.btn{padding:9px 18px;font-size:.92rem}
+  header{position:sticky;top:0;z-index:20;background:rgba(253,249,246,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo svg{width:32px;height:32px}
+  .logo .wm{font-family:"Cormorant Garamond",serif;font-weight:700;letter-spacing:.24em;font-size:1.6rem;direction:ltr;background:linear-gradient(90deg,var(--rose-d),var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .logo .sub{font-size:.72rem;font-weight:500;color:var(--muted);border-right:1px solid var(--line);padding-right:10px}
+  .nav a.btn{padding:10px 20px;font-size:.9rem}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--rose);color:#fff;font:inherit;font-weight:600;padding:14px 28px;cursor:pointer;text-decoration:none;transition:background .2s,transform .2s}
-  .btn:hover{background:var(--rose-d)}
-  .btn:active{transform:scale(.98)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
-  .btn.ghost:hover{background:var(--ink);color:#fff}
-  .btn[disabled]{opacity:.55;cursor:not-allowed}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;font:inherit;font-weight:600;padding:15px 30px;cursor:pointer;text-decoration:none;box-shadow:0 10px 26px rgba(164,69,92,.26);transition:transform .2s,box-shadow .2s,filter .2s}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 14px 32px rgba(164,69,92,.34)}
+  .btn:active{transform:translateY(0)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(45,37,48,.25);box-shadow:none}
+  .btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn.wab{background:linear-gradient(135deg,#2ee06f,#1ba34c);box-shadow:0 10px 26px rgba(27,163,76,.28)}
+  .btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+  .btn svg{flex:none}
 
   /* hero */
-  .hero{padding:72px 0 56px;position:relative;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);margin:14px 0 18px}
-  .hero h1 em{font-style:normal;color:var(--rose-d)}
-  .hero p.lead{color:var(--muted);font-size:1.08rem;max-width:520px;margin:0 0 30px}
-  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-  .trust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
-  .trust b{display:block;color:var(--ink);font-size:1.05rem}
-  .hero-art{aspect-ratio:4/5;border-radius:220px 220px var(--radius) var(--radius);background:
-      radial-gradient(circle at 30% 25%,#f3d9cf 0,transparent 55%),
-      radial-gradient(circle at 75% 70%,#e9cdbf 0,transparent 50%),
-      linear-gradient(160deg,#efe1d4,#dcbfae);position:relative;display:flex;align-items:flex-end;justify-content:center;padding:28px}
-  .hero-art{overflow:hidden}
-  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
-  .hero-art svg{display:none}
-  .hero-card{position:relative;background:#fff;border-radius:14px;padding:16px 20px;box-shadow:0 12px 30px rgba(80,50,40,.12);font-size:.9rem;width:100%}
-  .hero-card .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-left:6px}
+  .hero{padding:66px 0 60px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-180px;left:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,#f6d8c9,transparent 68%);opacity:.7;z-index:-1}
+  .hero::after{content:"";position:absolute;bottom:-160px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,#f2dbe4,transparent 68%);opacity:.7;z-index:-1}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:50px;align-items:center}
+  .hero h1{font-size:clamp(2.2rem,4.8vw,3.6rem);margin:16px 0 18px}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold-d),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{color:var(--muted);font-size:1.1rem;max-width:520px;margin:0 0 30px}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .hero-ctas .textlink{color:var(--rose-d);font-weight:600;font-size:.92rem;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s}
+  .hero-ctas .textlink:hover{border-color:var(--rose-d)}
+  .trust{display:flex;gap:30px;margin-top:40px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+  .trust b{display:block;font-family:"Amiri",serif;color:var(--ink);font-size:1.3rem;line-height:1.2}
+  .hero-art{aspect-ratio:4/5;border-radius:240px 240px var(--radius) var(--radius);position:relative;display:flex;align-items:flex-end;justify-content:center;padding:26px;overflow:hidden;box-shadow:var(--shadow)}
+  .hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(45,37,48,.35));z-index:1}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 45%}
+  .hero-card{position:relative;z-index:2;background:rgba(255,255,255,.95);border-radius:14px;padding:15px 18px;box-shadow:0 14px 30px rgba(60,30,42,.18);font-size:.9rem;width:100%;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-card .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ok);margin-left:7px;box-shadow:0 0 0 4px rgba(63,125,92,.18)}
 
-  section{padding:76px 0;scroll-margin-top:68px}
-  .sec-head{max-width:620px;margin-bottom:40px}
-  .sec-head h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-top:8px}
-  .sec-head p{color:var(--muted);margin:10px 0 0}
+  section{padding:82px 0;scroll-margin-top:70px}
+  .sec-head{max-width:640px;margin-bottom:44px}
+  .sec-head.center{margin-inline:auto;text-align:center}
+  .sec-head.center .eyebrow::after{content:"";width:22px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:10px}
+  .sec-head p{color:var(--muted);margin:12px 0 0}
 
   /* services */
-  .services{background:var(--sand)}
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .svc{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:0 0 22px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
-  .svc:hover{border-color:var(--rose);transform:translateY(-3px)}
-  .svc .th{aspect-ratio:4/3;background:#efe3d9 center/cover no-repeat;display:grid;place-items:center;color:var(--rose-d);margin-bottom:16px;transition:transform .5s}
-  .svc:hover .th{transform:scale(1.04)}
-  .svc .th.empty{background:radial-gradient(circle at 30% 30%,#f6e4da,transparent 60%),linear-gradient(150deg,#efe1d6,#e2c9ba)}
-  .svc .th.empty span{font-family:"Cormorant Garamond",serif;letter-spacing:.2em;font-size:1.1rem;color:#9c7a6c;direction:ltr}
-  .svc h3,.svc p{padding:0 22px}
-  .svc h3{font-size:1.3rem;margin-bottom:6px}
+  .services{background:var(--sand);position:relative}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:0 0 24px;overflow:hidden;cursor:pointer;box-shadow:0 6px 18px rgba(78,40,55,.05);transition:transform .25s,box-shadow .25s}
+  .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .svc .th{aspect-ratio:4/3;background:#f3e4e8 center/cover no-repeat;position:relative;overflow:hidden;margin-bottom:18px}
+  .svc .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+  .svc:hover .th img{transform:scale(1.07)}
+  .svc .th.empty{display:grid;place-items:center;background:radial-gradient(circle at 32% 28%,#f7e1e8,transparent 62%),linear-gradient(150deg,#f3e2e6,#e7c9cf)}
+  .svc .th.empty span{font-family:"Cormorant Garamond",serif;letter-spacing:.24em;font-size:1.25rem;color:#b07d8c;direction:ltr}
+  .svc .ic{position:absolute;bottom:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--rose-d);box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:2}
+  .svc h3,.svc p{padding:0 24px}
+  .svc h3{font-size:1.35rem;margin-bottom:6px}
   .svc p{color:var(--muted);margin:0;font-size:.95rem}
-
-  /* before / after */
-  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .ba-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-  .ba{position:relative;aspect-ratio:4/5;overflow:hidden;user-select:none;direction:ltr;touch-action:pan-y}
-  .ba .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-  .ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
-  .ba .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#9a8b80;font-size:.8rem;text-align:center;padding:20px}
-  .ba .ph.b{padding-right:50%;background:repeating-linear-gradient(135deg,#efe6dd 0 12px,#ebe0d5 12px 24px)}
-  .ba .ph.a{padding-left:50%;background:linear-gradient(160deg,#f7ece4,#ecd6c9);color:#8b6f63}
-  .ba .ph svg{width:34px;height:34px;opacity:.6}
-  .ba .ph span{direction:rtl}
-  .ba .tag{position:absolute;top:12px;font-size:.72rem;font-weight:600;background:rgba(43,36,32,.75);color:#fff;padding:3px 10px;border-radius:999px;z-index:3}
-  .ba .tag.l{left:12px}.ba .tag.r{right:12px}
-  .ba .bar{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;transform:translateX(-1px);z-index:2;pointer-events:none}
-  .ba .knob{position:absolute;top:50%;left:var(--pos,50%);width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);display:grid;place-items:center;z-index:2;pointer-events:none;color:var(--ink)}
-  .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4;margin:0}
-  .ba-cap{padding:14px 18px}
-  .ba-cap b{display:block;font-size:1rem}
-  .ba-cap span{color:var(--muted);font-size:.85rem}
-  .ba-note{color:var(--muted);font-size:.8rem;margin-top:16px}
-  @media (max-width:860px){.ba-grid{grid-template-columns:1fr 1fr}}
-  @media (max-width:560px){.ba-grid{grid-template-columns:1fr}}
+  .svc .go{padding:0 24px;margin-top:14px;color:var(--rose-d);font-weight:600;font-size:.9rem;display:flex;align-items:center;gap:6px}
+  .svc .go svg{transition:transform .2s}
+  .svc:hover .go svg{transform:translateX(-4px)}
 
   /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
-  .step{border-top:1.5px solid var(--ink);padding-top:18px}
-  .step::before{counter-increment:s;content:"0" counter(s);font-family:"Amiri",serif;font-size:2rem;color:var(--rose)}
-  .step h3{font-size:1.25rem;margin:4px 0 6px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:s}
+  .step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px 26px;box-shadow:0 6px 18px rgba(78,40,55,.05)}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:"Cormorant Garamond",serif;font-weight:700;font-size:2.2rem;background:linear-gradient(135deg,var(--gold-d),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .step h3{font-size:1.25rem;margin:6px 0 8px}
   .step p{margin:0;color:var(--muted);font-size:.95rem}
 
   /* space */
   .space{background:var(--sand)}
-  .space-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-  .space-imgs{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;align-items:end}
-  .space-imgs img{width:100%;border-radius:var(--radius);object-fit:cover;display:block}
+  .space-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+  .space-imgs{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:end}
+  .space-imgs img{width:100%;border-radius:var(--radius);object-fit:cover;display:block;box-shadow:var(--shadow)}
   .space-imgs img:first-child{aspect-ratio:4/5}
-  .space-imgs img:last-child{aspect-ratio:3/4;margin-bottom:-28px}
+  .space-imgs img:last-child{aspect-ratio:3/4;margin-bottom:-30px}
   @media (max-width:860px){.space-grid{grid-template-columns:1fr}.space-imgs img:last-child{margin-bottom:0}}
 
-  /* form */
-  .book{background:var(--ink);color:#f4ece4}
-  .book .sec-head p{color:#c9bcb1}
-  .book .eyebrow{color:#e0a597}
-  .book-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
-  .perks{list-style:none;padding:0;margin:0}
-  .perks li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#ddd2c7}
-  .perks li svg{flex:none;margin-top:6px;color:#e0a597}
-  form, .result{background:var(--cream);color:var(--ink);border-radius:var(--radius);padding:30px}
+  /* book */
+  .book{background:linear-gradient(165deg,#2d2530,#3d2b39 70%,#4a2f3e);color:#f4ece4;position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-120px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(198,161,92,.18),transparent 70%)}
+  .book .sec-head p{color:#cdbfc6}
+  .book .eyebrow{color:var(--gold)}
+  .book .eyebrow::before{background:linear-gradient(90deg,var(--gold),transparent)}
+  .book-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:50px;align-items:start;position:relative}
+  .perks{list-style:none;padding:0;margin:0 0 26px}
+  .perks li{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#e3d7cf}
+  .perks li svg{flex:none;margin-top:6px;color:var(--gold)}
+  .wa-cta{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:22px}
+  .wa-cta b{display:block;font-family:"Amiri",serif;font-size:1.2rem;margin-bottom:4px}
+  .wa-cta p{margin:0 0 16px;color:#cdbfc6;font-size:.9rem}
+  .wa-cta .btn{width:100%}
+  form, .result{background:var(--cream);color:var(--ink);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+  .form-or{display:flex;align-items:center;gap:14px;color:#b9aab1;font-size:.85rem;margin:22px 0}
+  .form-or::before,.form-or::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.14)}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .field{margin-bottom:16px}
   label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
-  input,select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .2s}
-  input:focus,select:focus,textarea:focus{border-color:var(--rose)}
+  input,select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .2s,box-shadow .2s}
+  input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(193,90,114,.14)}
   textarea{min-height:92px;resize:vertical}
   .phone{display:flex;direction:ltr}
-  .phone span{display:grid;place-items:center;padding:0 12px;border:1.5px solid var(--line);border-left:0;border-radius:0 12px 12px 0;background:var(--sand);font-size:.95rem}
-  .phone span{order:2;border-left:1.5px solid var(--line);border-right:0;border-radius:12px 0 0 12px;order:0}
-  .phone input{border-radius:0 12px 12px 0;border-left:0;text-align:left}
+  .phone span{display:grid;place-items:center;padding:0 12px;border:1.5px solid var(--line);border-right:0;border-radius:12px 0 0 12px;background:var(--sand);font-size:.95rem;font-weight:600}
+  .phone input{border-radius:0 12px 12px 0;text-align:left}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
   .chips input{display:none}
-  .chips label{margin:0;font-weight:500;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;background:#fff;font-size:.88rem}
+  .chips label{margin:0;font-weight:500;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;background:#fff;font-size:.88rem;transition:all .2s}
   .chips input:checked+label{background:var(--ink);color:#fff;border-color:var(--ink)}
   .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--muted);margin:6px 0 20px}
   .consent input{width:18px;height:18px;margin-top:5px;accent-color:var(--rose)}
@@ -147,44 +143,48 @@
   form .btn{width:100%}
   .form-note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:12px}
 
-  .result{display:none}
-  .result h3{font-size:1.6rem;margin-bottom:6px}
-  .result .ok-ic{width:54px;height:54px;border-radius:50%;background:#e3efe7;color:var(--ok);display:grid;place-items:center;margin-bottom:14px}
-  .tg{margin-top:22px;border:1px dashed var(--line);border-radius:14px;padding:16px;background:#fff}
-  .tg-h{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);margin-bottom:10px}
-  .tg-msg{background:#eef6fc;border-radius:12px 12px 12px 4px;padding:12px 14px;font-size:.88rem;white-space:pre-wrap;line-height:1.75}
-  .tg-btns{display:flex;gap:6px;margin-top:6px}
-  .tg-btns span{flex:1;text-align:center;background:#dbeaf6;border-radius:8px;padding:6px;font-size:.8rem;color:#2a6496}
-  .pay{margin-top:18px;padding:16px;border-radius:14px;background:var(--sand);font-size:.9rem}
-  .pay .btn{margin-top:10px;width:100%}
+  .result{display:none;text-align:center}
+  .result h3{font-size:1.7rem;margin-bottom:6px}
+  .result .ok-ic{width:60px;height:60px;border-radius:50%;background:#e4f1ea;color:var(--ok);display:grid;place-items:center;margin:0 auto 16px}
+  .result .r-wa{margin-top:22px}
+  .result .r-wa .btn{width:100%}
 
   /* faq */
-  details{border-bottom:1px solid var(--line);padding:18px 0}
+  details{border-bottom:1px solid var(--line);padding:20px 0}
   summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
   summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--rose)}
+  summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--gold-d)}
   details[open] summary::after{content:"–"}
   details p{color:var(--muted);margin:10px 0 0}
-  .faq-wrap{max-width:780px}
+  .faq-wrap{max-width:800px}
 
-  footer{border-top:1px solid var(--line);padding:36px 0 90px;font-size:.85rem;color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:40px 0 92px;font-size:.85rem;color:var(--muted);background:var(--sand)}
   .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .disclaimer{margin-top:16px;font-size:.78rem;max-width:760px}
+  .foot .wm{font-family:'Cormorant Garamond',serif;letter-spacing:.2em;font-weight:700;background:linear-gradient(90deg,var(--rose-d),var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .disclaimer{margin-top:18px;font-size:.78rem;max-width:780px}
 
-  .wa{position:fixed;bottom:18px;left:18px;z-index:30;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.18)}
-  .demo-badge{position:fixed;bottom:18px;right:18px;z-index:30;background:var(--ink);color:#fff;font-size:.75rem;padding:6px 12px;border-radius:999px;opacity:.85}
+  .wa{position:fixed;bottom:20px;left:20px;z-index:30;width:58px;height:58px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px rgba(37,211,102,.4);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .demo-badge{position:fixed;bottom:20px;right:20px;z-index:30;background:var(--ink);color:#fff;font-size:.75rem;padding:6px 12px;border-radius:999px;opacity:.85}
+
+  /* reveal on scroll — gated by html.anim so content stays visible if JS/observer fails */
+  .reveal{transition:opacity .7s ease,transform .7s ease}
+  html.anim .reveal{opacity:0;transform:translateY(26px)}
+  html.anim .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){html.anim .reveal{opacity:1;transform:none;transition:none}.wa{animation:none}}
 
   @media (max-width:860px){
     .hero-grid,.book-grid{grid-template-columns:1fr}
-    .hero-art{max-width:340px;margin:0 auto;width:100%}
+    .hero-art{max-width:360px;margin:0 auto;width:100%}
     .svc-grid{grid-template-columns:1fr 1fr}
     .steps{grid-template-columns:1fr}
-    section{padding:56px 0}
+    section{padding:60px 0}
   }
   @media (max-width:560px){
     .svc-grid,.row{grid-template-columns:1fr}
-    form,.result{padding:22px}
+    form,.result{padding:24px}
     .nav a.btn{display:none}
+    .trust{gap:20px}
   }
 </style>
 </head>
@@ -193,7 +193,7 @@
 <header>
   <div class="wrap nav">
     <a href="#top" class="logo">
-      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#b9776a" stroke-width="1.3"/><path d="M10 10l6 13 6-13" stroke="#2b2420" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#c6a15c" stroke-width="1.3"/><path d="M10 10l6 13 6-13" stroke="#a4455c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="wm">VELORA</span><span class="sub">عيادات التجميل</span>
     </a>
     <a href="#book" class="btn">احجز استشارتك المجانية</a>
@@ -201,25 +201,27 @@
 </header>
 
 <main id="top">
-  <section class="hero" style="padding-top:64px">
+  <section class="hero" style="padding-top:60px">
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">استشارة مجانية · بدون أي التزام</span>
         <h1>جمالك الطبيعي،<br><em>بقرار مدروس</em></h1>
-        <p class="lead">قبل أي إجراء تجميلي، احكِ مع مختص. عبّي الطلب بدقيقة، وفريقنا يتواصل معك لتحديد موعد استشارة مجانية تناسب وقتك.</p>
+        <p class="lead">قبل أي إجراء تجميلي، احكِ مع مختص. عبّي الطلب بدقيقة، أو راسلنا واتساب مباشرة، وفريقنا يرتّب لك موعد استشارة مجانية تناسب وقتك.</p>
         <div class="hero-ctas">
           <a href="#book" class="btn">ابدأ الطلب الآن</a>
-          <a href="#services" class="btn ghost">تعرّف على الخدمات</a>
+          <a href="#" class="btn wab js-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+            واتساب مباشرة
+          </a>
         </div>
         <div class="trust">
           <div><b>مجانية</b>الاستشارة الأولى</div>
-          <div><b>خلال 24 ساعة</b>نتواصل معك</div>
+          <div><b>٢٤ ساعة</b>نتواصل معك خلالها</div>
           <div><b>سرّية تامة</b>لبياناتك</div>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
         <img class="hero-img" src="img/hero.jpg" alt="">
-        <svg viewBox="0 0 400 500" preserveAspectRatio="none"><path d="M60 420 C 120 260, 280 260, 340 420" stroke="#fff" stroke-width="1.2" fill="none"/><path d="M90 440 C 150 300, 250 300, 310 440" stroke="#fff" stroke-width="1" fill="none"/><circle cx="200" cy="170" r="70" stroke="#fff" stroke-width="1.2" fill="none"/></svg>
         <div class="hero-card"><span class="dot"></span>فريق التنسيق متاح الآن لاستقبال طلبك</div>
       </div>
     </div>
@@ -227,7 +229,7 @@
 
   <section class="services" id="services">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head center reveal">
         <span class="eyebrow">الخدمات</span>
         <h2>بشو بتحب نستشيرك؟</h2>
         <p>اختر الخدمة اللي بتهمك، ورح تنضاف تلقائياً على طلبك.</p>
@@ -236,27 +238,15 @@
     </div>
   </section>
 
-  <section id="results">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">النتائج</span>
-        <h2>قبل وبعد</h2>
-        <p>اسحب الخط لتقارن. كل الصور لحالات حقيقية من مراكزنا، ومنشورة بموافقة أصحابها.</p>
-      </div>
-      <div class="ba-grid" id="baGrid"></div>
-      <p class="ba-note">النتائج تختلف من شخص لآخر حسب طبيعة البشرة والحالة وتقييم الطبيب.</p>
-    </div>
-  </section>
-
   <section>
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head center reveal">
         <span class="eyebrow">كيف بتمشي الأمور</span>
         <h2>ثلاث خطوات بسيطة</h2>
       </div>
-      <div class="steps">
-        <div class="step"><h3>عبّي الطلب</h3><p>اسمك ورقم جوالك والخدمة اللي بتهمك. ما بنطلب أي بيانات دفع.</p></div>
-        <div class="step"><h3>نتواصل معك</h3><p>منسّق من الفريق يتصل أو يراسلك واتساب خلال 24 ساعة لتحديد الموعد.</p></div>
+      <div class="steps reveal">
+        <div class="step"><h3>عبّي الطلب</h3><p>اسمك ورقم جوالك والخدمة اللي بتهمك — أو راسلنا واتساب مباشرة. ما بنطلب أي بيانات دفع.</p></div>
+        <div class="step"><h3>نتواصل معك</h3><p>منسّق من الفريق يراسلك واتساب خلال 24 ساعة لتحديد موعد استشارتك.</p></div>
         <div class="step"><h3>استشارتك المجانية</h3><p>تقييم مع مختص، وخطة واضحة بالخيارات والتكلفة. القرار بعدها إلك.</p></div>
       </div>
     </div>
@@ -264,14 +254,14 @@
 
   <section class="space">
     <div class="wrap space-grid">
-      <div class="space-imgs">
+      <div class="space-imgs reveal">
         <img src="img/room.jpg" alt="غرفة علاج هادئة بإضاءة دافئة" loading="lazy">
         <img src="img/care.jpg" alt="جلسة ليزر بأجهزة حديثة" loading="lazy">
       </div>
-      <div>
+      <div class="reveal">
         <span class="eyebrow">تجربتك معنا</span>
-        <h2 style="font-size:clamp(1.7rem,3.2vw,2.4rem);margin:8px 0 14px">مساحة هادئة، وأجهزة حديثة</h2>
-        <p style="color:var(--muted);margin:0 0 22px">غرف خاصة ومريحة، ومعايير تعقيم صارمة، وأجهزة معتمدة. خصوصيتك وراحتك أولويتنا من أول زيارة.</p>
+        <h2 style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin:10px 0 16px">مساحة هادئة، وأجهزة حديثة</h2>
+        <p style="color:var(--muted);margin:0 0 24px">غرف خاصة ومريحة، ومعايير تعقيم صارمة، وأجهزة معتمدة. خصوصيتك وراحتك أولويتنا من أول زيارة.</p>
         <a href="#book" class="btn">احجز استشارتك المجانية</a>
       </div>
     </div>
@@ -279,21 +269,29 @@
 
   <section class="book" id="book">
     <div class="wrap book-grid">
-      <div>
+      <div class="reveal">
         <div class="sec-head" style="margin-bottom:24px">
           <span class="eyebrow">طلب استشارة</span>
           <h2 style="color:#fff">احجز استشارتك المجانية</h2>
-          <p>بياناتك بتوصل مباشرة لفريق التنسيق فقط.</p>
+          <p>عبّي الطلب وبياناتك بتوصل مباشرة لفريق التنسيق، أو راسلنا واتساب على طول.</p>
         </div>
         <ul class="perks">
           <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>بدون أي رسوم على الاستشارة الأولى</li>
           <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>أطباء ومراكز مرخّصة</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>بتختار الوقت ووسيلة التواصل المناسبة</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>تأكيد الموعد بعربون اختياري عبر بوابة دفع آمنة</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>بتختار الوقت المناسب إلك</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>خصوصية تامة لبياناتك</li>
         </ul>
+        <div class="wa-cta">
+          <b>تحب تحكي معنا على طول؟</b>
+          <p>تواصل واتساب مباشرة مع فريق التنسيق وأجب على أسئلتك فوراً.</p>
+          <a href="#" class="btn wab js-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+            تواصل واتساب مباشرة
+          </a>
+        </div>
       </div>
 
-      <div>
+      <div class="reveal">
         <form id="leadForm" novalidate>
           <div class="row">
             <div class="field" id="f-name">
@@ -342,29 +340,20 @@
             <div class="err" style="margin:-14px 0 14px">لازم توافق عشان نقدر نتواصل معك</div>
           </div>
           <button class="btn" type="submit" id="submitBtn">أرسل طلب الاستشارة</button>
-          <p class="form-note">🔒 ما بنطلب أي معلومات بطاقة. الدفع (إن وجد) بيكون فقط عبر بوابة دفع مرخّصة.</p>
+          <p class="form-note">🔒 بياناتك تُستخدم فقط للتواصل بخصوص طلبك، ولا تُشارك مع أي طرف ثالث.</p>
         </form>
 
         <div class="result" id="result" role="status" aria-live="polite">
-          <div class="ok-ic"><svg width="26" height="26" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <div class="ok-ic"><svg width="28" height="28" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
           <h3>وصلنا طلبك، شكراً <span id="rName"></span></h3>
-          <p style="color:var(--muted);margin:0">رقم الطلب <b id="rId"></b>. رح نتواصل معك عبر <span id="rContact"></span> خلال 24 ساعة.</p>
-
-          <div class="pay" id="payBox">
-            <b>ثبّت حجزك بعد الاستشارة</b><br>
-            <span style="color:var(--muted)">تقدر تدفع مبلغ تثبيت الحجز عبر صفحة دفع آمنة (مدى، فيزا، Apple Pay)، ويُخصم من قيمة الإجراء لاحقاً.</span>
-            <a class="btn" id="payBtn" href="#" target="_blank" rel="noopener">ادفع لتثبيت الحجز</a>
+          <p style="color:var(--muted);margin:0">رقم الطلب <b id="rId"></b>. رح نتواصل معك عبر واتساب خلال 24 ساعة.</p>
+          <div class="r-wa">
+            <a href="#" class="btn wab js-wa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+              تواصل واتساب الآن
+            </a>
           </div>
-
-          <div class="tg" id="tgPreview">
-            <div class="tg-h">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#2aa1da"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg>
-              معاينة: هيك رح توصلك الرسالة على تيليجرام
-            </div>
-            <div class="tg-msg" id="tgMsg"></div>
-            <div class="tg-btns"><span>💬 واتساب العميل</span><span>📞 اتصال</span></div>
-          </div>
-          <button class="btn ghost" style="margin-top:18px;width:100%" id="again" type="button">طلب جديد</button>
+          <button class="btn ghost" style="margin-top:12px;width:100%" id="again" type="button">طلب جديد</button>
         </div>
       </div>
     </div>
@@ -372,11 +361,13 @@
 
   <section>
     <div class="wrap faq-wrap">
-      <div class="sec-head"><span class="eyebrow">أسئلة شائعة</span><h2>قبل ما تحجز</h2></div>
-      <details><summary>هل الاستشارة مجانية فعلاً؟</summary><p>إيه، الاستشارة الأولى مجانية بالكامل وبدون أي التزام. بتعرف الخيارات والتكلفة، والقرار بعدها إلك.</p></details>
-      <details><summary>ليش ما بتطلبوا بيانات البطاقة بالفورم؟</summary><p>لحمايتك. أي دفع (مثل عربون تثبيت الموعد) بيتم فقط عبر صفحة بوابة الدفع المرخّصة، وإحنا ما بنشوف ولا بنخزّن بيانات بطاقتك.</p></details>
-      <details><summary>مين اللي بيعمل الاستشارة؟</summary><p>أطباء مختصون في مراكز مرخّصة من الجهات الصحية المختصة. بنحدد المختص المناسب حسب الخدمة اللي اخترتها.</p></details>
-      <details><summary>متى رح تتواصلوا معي؟</summary><p>خلال 24 ساعة بالوقت اللي اخترته، عبر واتساب أو اتصال حسب اختيارك.</p></details>
+      <div class="sec-head center reveal"><span class="eyebrow">أسئلة شائعة</span><h2>قبل ما تحجز</h2></div>
+      <div class="reveal">
+        <details><summary>هل الاستشارة مجانية فعلاً؟</summary><p>إيه، الاستشارة الأولى مجانية بالكامل وبدون أي التزام. بتعرف الخيارات والتكلفة، والقرار بعدها إلك.</p></details>
+        <details><summary>كيف بتواصلوا معي؟</summary><p>فريق التنسيق بيراسلك على واتساب خلال 24 ساعة بالوقت اللي اخترته، لتحديد موعد استشارتك.</p></details>
+        <details><summary>مين اللي بيعمل الاستشارة؟</summary><p>أطباء مختصون في مراكز مرخّصة من الجهات الصحية المختصة. بنحدد المختص المناسب حسب الخدمة اللي اخترتها.</p></details>
+        <details><summary>هل بياناتي بتضل سرّية؟</summary><p>أكيد. بياناتك بتوصل لفريق التنسيق فقط، وبتُستخدم للتواصل بخصوص طلبك، ولا تُشارك مع أي طرف ثالث.</p></details>
+      </div>
     </div>
   </section>
 </main>
@@ -384,73 +375,68 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><b style="color:var(--ink);font-family:'Cormorant Garamond',serif;letter-spacing:.18em">VELORA</b> فيلورا · المملكة العربية السعودية<br>ترخيص رقم: [رقم ترخيص الجهة الصحية]</div>
+      <div><span class="wm">VELORA</span> فيلورا · المملكة العربية السعودية<br>ترخيص رقم: [رقم ترخيص الجهة الصحية]</div>
       <div id="privacy">سياسة الخصوصية: بياناتك تُستخدم فقط للتواصل بخصوص طلبك ولا تُشارك مع أي طرف ثالث.</div>
     </div>
     <p class="disclaimer">المعلومات في هذا الموقع للتعريف فقط ولا تُغني عن الاستشارة الطبية. النتائج تختلف من شخص لآخر، وأي إجراء يتم بعد تقييم الطبيب المختص.</p>
   </div>
 </footer>
 
-<a class="wa" id="waBtn" href="#" target="_blank" rel="noopener" aria-label="واتساب">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+<a class="wa js-wa" href="#" target="_blank" rel="noopener" aria-label="واتساب">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
 </a>
 <div class="demo-badge" id="demoBadge">نسخة تجريبية</div>
 
 <script>
-/* ================= الإعدادات — عدّلها قبل النشر ================= */
+/* ================= الإعدادات ================= */
 const CONFIG = {
-  mode: "live",                 // "demo" للمعاينة · "live" بعد ربط تيليجرام
+  mode: "live",                 // "demo" للمعاينة · "live" للنشر الفعلي
   endpoint: "/api/lead",        // دالة الخادم اللي بتبعت لتيليجرام
   whatsapp: "966557878076",     // رقم واتساب المشروع (بدون + وبدون 00)
-  paymentLink: ""               // اتركه فاضي لاستخدام صفحة العربون pay.html (إعداداتها داخل pay.html)
+  waText: "مرحبا، حابب أستفسر عن استشارة تجميل مجانية"
 };
 const SERVICES = [
-  {img:"img/filler.jpg",k:"فيلر",      d:"تحديد الشفايف والخدود والفك بشكل طبيعي.", i:'<path d="M12 4c-4 4-6 7-6 10a6 6 0 0 0 12 0c0-3-2-6-6-10z"/>'},
-  {k:"بوتوكس",    d:"تخفيف خطوط الجبهة وحول العيون.", i:'<path d="M4 12h16M7 8h10M9 16h6"/>'},
-  {img:"img/laser.jpg",k:"ليزر إزالة الشعر", d:"جلسات ليزر بأجهزة حديثة لكل أنواع البشرة.", i:'<path d="M12 3v6M12 15v6M3 12h6M15 12h6"/>'},
-  {img:"img/glow.jpg",k:"نضارة البشرة", d:"هيدرافيشل، تقشير، ميزوثيرابي وغيرها.", i:'<circle cx="12" cy="12" r="7"/><path d="M9 11h.01M15 11h.01M9 15c2 1.5 4 1.5 6 0"/>'},
-  {k:"زراعة الشعر", d:"تقييم الحالة واختيار التقنية المناسبة.", i:'<path d="M6 20c0-8 3-14 6-16 3 2 6 8 6 16"/>'},
-  {img:"img/body.jpg",k:"تنسيق القوام", d:"خيارات غير جراحية وجراحية بعد تقييم الطبيب.", i:'<path d="M8 3c-2 5 2 7 0 11s2 7 0 7M16 3c2 5-2 7 0 11s-2 7 0 7"/>'}
+  {img:"img/filler.jpg", k:"فيلر",          d:"تحديد الشفايف والخدود والفك بشكل طبيعي.", i:'<path d="M12 4c-4 4-6 7-6 10a6 6 0 0 0 12 0c0-3-2-6-6-10z"/>'},
+  {k:"بوتوكس",         d:"تخفيف خطوط الجبهة وحول العيون.", i:'<path d="M4 12h16M7 8h10M9 16h6"/>'},
+  {img:"img/laser.jpg", k:"ليزر إزالة الشعر", d:"جلسات ليزر بأجهزة حديثة لكل أنواع البشرة.", i:'<path d="M12 3v6M12 15v6M3 12h6M15 12h6"/>'},
+  {img:"img/glow.jpg",  k:"نضارة البشرة",     d:"هيدرافيشل، تقشير، ميزوثيرابي وغيرها.", i:'<circle cx="12" cy="12" r="7"/><path d="M9 11h.01M15 11h.01M9 15c2 1.5 4 1.5 6 0"/>'},
+  {k:"زراعة الشعر",    d:"تقييم الحالة واختيار التقنية المناسبة.", i:'<path d="M6 20c0-8 3-14 6-16 3 2 6 8 6 16"/>'},
+  {img:"img/body.jpg",  k:"تنسيق القوام",      d:"خيارات غير جراحية وجراحية بعد تقييم الطبيب.", i:'<path d="M8 3c-2 5 2 7 0 11s2 7 0 7M16 3c2 5-2 7 0 11s-2 7 0 7"/>'}
 ];
-/* صور قبل وبعد: حط مسار صورة حقيقية (بموافقة المريض) مكان "" */
-const CASES = [
-  {title:"فيلر الشفايف", note:"جلسة واحدة · 1 مل", before:"", after:""},
-  {title:"نضارة البشرة", note:"4 جلسات هيدرافيشل", before:"", after:""},
-  {title:"زراعة الشعر", note:"بعد 9 أشهر", before:"", after:""}
-];
-/* ================================================================= */
+/* ============================================= */
 
 const $ = s => document.querySelector(s);
+const arrow = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>';
 const grid = $("#svcGrid"), sel = $("#service");
 SERVICES.forEach(s => {
   const el = document.createElement("div");
-  el.className = "svc";
-  el.innerHTML = `<div class="th${s.img?"":" empty"}" ${s.img?`style="background-image:url('${s.img}')"`:""}>${s.img?"":`<span>VELORA</span>`}</div><h3>${s.k}</h3><p>${s.d}</p>`;
-  el.onclick = () => { sel.value = s.k; $("#book").scrollIntoView(); };
+  el.className = "svc reveal";
+  const thumb = s.img
+    ? `<div class="th"><img src="${s.img}" alt="${s.k}" loading="lazy"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${s.i}</svg></span></div>`
+    : `<div class="th empty"><span>VELORA</span></div>`;
+  el.innerHTML = `${thumb}<h3>${s.k}</h3><p>${s.d}</p><div class="go">اختر هالخدمة ${arrow}</div>`;
+  el.onclick = () => { sel.value = s.k; $("#book").scrollIntoView({behavior:"smooth"}); };
   grid.appendChild(el);
   sel.insertAdjacentHTML("beforeend", `<option>${s.k}</option>`);
 });
 sel.insertAdjacentHTML("beforeend", `<option>غير متأكد/ة — بدي نصيحة</option>`);
 
-const camIc = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>';
-const side = (src, cls, label) => src
-  ? `<img class="pic ${cls==='a'?'after':''}" src="${src}" alt="${label}">`
-  : `<div class="pic ph ${cls} ${cls==='a'?'after':''}">${camIc}<span>صورة ${label}<br>(حالة حقيقية)</span></div>`;
-CASES.forEach(c => {
-  const card = document.createElement("div");
-  card.className = "ba-card";
-  card.innerHTML = `<div class="ba">${side(c.before,'b','قبل')}${side(c.after,'a','بعد')}
-    <span class="tag l">قبل</span><span class="tag r">بعد</span>
-    <div class="bar"></div><div class="knob"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></div>
-    <input type="range" min="0" max="100" value="50" aria-label="مقارنة قبل وبعد: ${c.title}"></div>
-    <div class="ba-cap"><b>${c.title}</b><span>${c.note}</span></div>`;
-  const ba = card.querySelector(".ba");
-  card.querySelector("input").addEventListener("input", e => ba.style.setProperty("--pos", e.target.value + "%"));
-  $("#baGrid").appendChild(card);
-});
-
-$("#waBtn").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("مرحبا، بدي استشارة مجانية");
+/* روابط واتساب */
+const waHref = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.waText);
+document.querySelectorAll(".js-wa").forEach(a => { a.href = waHref; a.target = "_blank"; a.rel = "noopener"; });
 if (CONFIG.mode !== "demo") $("#demoBadge").remove();
+
+/* ظهور تدريجي عند التمرير (مع أمان: المحتوى يظهر دايماً) */
+const reveals = document.querySelectorAll(".reveal");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+if (!reduceMotion && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("anim");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {threshold:.1, rootMargin:"0px 0px -4% 0px"});
+  reveals.forEach(el => io.observe(el));
+  setTimeout(() => reveals.forEach(el => el.classList.add("in")), 3000); // شبكة أمان
+}
 
 function normPhone(v){
   v = v.replace(/[^\d]/g,"").replace(/^00966|^966/,"").replace(/^0/,"");
@@ -507,30 +493,12 @@ function showInlineError(){
     n.id = "sendErr"; n.className = "form-note"; n.style.color = "var(--err)";
     $("#submitBtn").after(n);
   }
-  n.innerHTML = `صار خلل بالإرسال. جرّب مرة ثانية، أو <a href="https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("مرحبا، واجهتني مشكلة بإرسال الطلب وحابب أتواصل معكم")}" target="_blank" rel="noopener" style="color:var(--rose-d);font-weight:600;text-decoration:underline">تواصل معنا واتساب</a>`;
+  n.innerHTML = `صار خلل بالإرسال. جرّب مرة ثانية، أو <a href="${waHref}" target="_blank" rel="noopener" style="color:var(--rose-d);font-weight:700;text-decoration:underline">تواصل معنا واتساب</a>`;
 }
 
 function showResult(d, id){
   $("#rName").textContent = d.name.split(" ")[0];
   $("#rId").textContent = id;
-  $("#rContact").textContent = d.contact === "اتصال" ? "اتصال هاتفي" : "واتساب";
-  const pb = $("#payBtn");
-  // صفحة العربون (pay.html) بتاخد رقم الطلب والاسم والخدمة والجوال،
-  // وبعد الدفع بتحوّل لصفحة تأكيد الرمز (verify.html) للتأكد إنه نفس الزبون
-  const payQ = new URLSearchParams({ref: id, n: d.name.split(" ")[0], s: d.service, p: d.phone});
-  pb.href = (CONFIG.paymentLink || "pay.html") + "?" + payQ;
-  pb.removeAttribute("target");
-  if (CONFIG.mode === "demo") {
-    $("#tgMsg").textContent =
-`🆕 طلب استشارة جديد #${id}
-👤 الاسم: ${d.name}
-📱 الجوال: +966${d.phone}
-📍 المدينة: ${d.city}
-💉 الخدمة: ${d.service}
-💬 التواصل: ${d.contact} · ${d.time}
-📝 ملاحظات: ${d.notes || "—"}
-🕒 ${new Date().toLocaleString("ar-SA",{timeZone:"Asia/Riyadh"})}`;
-  } else $("#tgPreview").remove();
   $("#leadForm").style.display = "none";
   $("#result").style.display = "block";
   $("#result").scrollIntoView({block:"center"});
